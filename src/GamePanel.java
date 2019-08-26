@@ -11,6 +11,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	
 	Timer timer;
 	
+	GamePanel() {
+		
+	timer = new Timer(1000/60, this);
+	
+	}
+	
 	void startGame () {
 		timer.start();
 	}
@@ -31,18 +37,20 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("keyTyped");
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("keyPressed");
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("keyEvent");
+
 	}
 }
