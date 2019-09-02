@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 
 public class GameObject {
 	int x;
@@ -13,6 +14,10 @@ public class GameObject {
 	}
 	
 	void update() {
-		
+		x = x + 10;
 	}
+	
+	void draw(Graphics g){
+		g.fillRect(x, y, width, height);
+	        }
 }
