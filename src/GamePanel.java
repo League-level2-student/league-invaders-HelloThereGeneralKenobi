@@ -17,12 +17,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	final int END_STATE = 2;
 	int currentState = MENU_STATE;
 	Font titleFont;
+	Font subTitleFont;
+	Rocketship ship;
 	
 	GamePanel() {
 		
 	timer = new Timer(1000/60, this);
-	titleFont = Font("Arial",Font.PLAIN,48);
-	
+	titleFont = new Font("wingdings",Font.BOLD,48);
+	subTitleFont = new Font("wingdings",Font.PLAIN,20);
+	ship = new Rocketship(250,700,50,50);
 	}
 	
 	void startGame () {
@@ -34,7 +37,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	}
 	
 	void updateGameState() {
-		
+		ship.update();
 	}
 	
 	void updateEndState() {
@@ -44,16 +47,26 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	void drawMenuState(Graphics g) {
 		g.setColor(Color.BLUE);
 		g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height);
+		g.setFont(titleFont);
+		g.setColor(Color.YELLOW);
+		g.drawString("LEAGUE INVADERS", 15, 200);
+		g.setFont(subTitleFont);
+		g.drawString("Press ENTER to start", 75, 350);
+		g.drawString("Press SPACE for instructions", 15, 500);
 	}
 	
 	void drawGameState(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height);
+		ship.draw(g);
 	}
 	
 	void drawEndState(Graphics g) {
 		g.setColor(Color.RED);
 		g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height);
+		g.setColor(Color.BLACK);
+		g.setFont(titleFont);
+		g.drawString("YOU DIED", 90, 300);
 	}
 	
 	@Override
@@ -110,12 +123,36 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 				currentState = MENU_STATE;
 			}
 		}
+		
+		if(e.getKeyCode() == 37) {
+			ship.left = true;
+		}
+		if(e.getKeyCode() == 38) {
+			ship.up = true;
+		}
+		if(e.getKeyCode() == 39) {
+			ship.right = true;
+		}
+		if(e.getKeyCode() == 40) {
+			ship.down = true;
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println("keyEvent");
-
+		if(e.getKeyCode() == 37) {
+			ship.left = false;
+		}
+		if(e.getKeyCode() == 38) {
+			ship.up = false;
+		}
+		if(e.getKeyCode() == 39) {
+			ship.right = false;
+		}
+		if(e.getKeyCode() == 40) {
+			ship.down = false;
+		}
 	}
 }
