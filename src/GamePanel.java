@@ -138,6 +138,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		if(e.getKeyCode() == 40) {
 			ship.down = true;
 		}
+		if(e.getKeyCode() == 32) {
+			ObjectManager.addProjectile(new Projectile(ship.x + 20, ship.y, 10, 10));
+		}
 	}
 
 	@Override
