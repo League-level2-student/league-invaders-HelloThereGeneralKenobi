@@ -41,6 +41,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	void updateGameState() {
 		object.update();
 		object.manageEnemies();
+		object.checkCollision();
+		object.purgeObjects();
+		if(ship.isAlive == false) {
+			currentState = END_STATE;
+		}
 	}
 	
 	void updateEndState() {
