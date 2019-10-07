@@ -75,6 +75,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		g.setColor(Color.BLACK);
 		g.setFont(titleFont);
 		g.drawString("YOU DIED", 90, 300);
+		g.setFont(subTitleFont);
+		g.drawString(object.getScore() + " Enemies killed", 90, 400);
 	}
 	
 	@Override
